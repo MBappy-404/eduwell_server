@@ -15,8 +15,14 @@ app.get('/course-categories', (req, res) => {
      res.send(categories);
 })
 
-app.get('/course-details', (req, res) =>{
-     res.send(courses);
+
+app.get('/category/:id', (req, res) =>{
+     const id = req.params.id;
+     const course_category = courses.filter( course => course.category_id === id);
+     res.send(course_category)
+ });
+app.get('/category', (req, res) =>{
+     res.send(courses)
  });
 
 app.get('/course-details/:id', (req, res) => {
@@ -30,5 +36,5 @@ app.get('/course-details/:id', (req, res) => {
 
 
 app.listen(port, () => {
-     console.log(`Example app listening on port ${port}`)
+     console.log(`EduWell app listening on port ${port}`)
 })
